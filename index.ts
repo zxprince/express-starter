@@ -1,12 +1,13 @@
 import express, { Express, Request, Response } from 'express';
 
+
 import Log from './src/classes/log';
 import apiRoutes from './src/routes/api';
-import config from './src/config';
+import configApp from './src/config/app';
 
 const app: Express = express();
-const name = config.app.name;
-const port = config.app.port;
+const name = configApp.name;
+const port = configApp.port;
 
 app.get('/', (req: Request, res: Response) => {
   res.send(name);

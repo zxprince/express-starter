@@ -1,4 +1,4 @@
-import config from '../config';
+import Config from '../config';
 import moment from 'moment';
 
 export default class Log {
@@ -14,7 +14,7 @@ export default class Log {
   }
 
   static getDateTime() {
-    return moment().format(config.log.dateTimeFormat);
+    return moment().format(Config.get('log', 'dateTimeFormat'));
   }
 
   static formatMessage(message: string, type: string = 'info'): string {

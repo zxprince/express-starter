@@ -1,11 +1,12 @@
-import app from './config/app';
-import auth from './config/auth';
-import log from './config/log';
+import dotenv from 'dotenv'; //hasOwnProperty
 
-const config = {
-  app: app,
-  auth: auth,
-  log: log,
-};
+dotenv.config();
+// export default config;
 
-export default config;
+export default class Config {
+  static get(key: string, defaultValue: any = null): any {
+    const isExist = process.env.hasOwnProperty(key);
+
+    return isExist ? process.env[key] : defaultValue;
+  }
+}

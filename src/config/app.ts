@@ -1,14 +1,15 @@
 import dotenv from 'dotenv';
+import Config from '../config';
 
 dotenv.config();
 
 const app = {
-  name: process.env.APP_NAME,
-  env: process.env.APP_ENV,
-  key: process.env.APP_KEY,
-  debug: process.env.APP_DEBUG,
-  timezone: process.env.APP_TIMEZONE,
-  port: process.env.APP_PORT,
+  name: Config.get('APP_NAME', 'Express Starter'),
+  env: Config.get('APP_ENV', 'local'),
+  key: Config.get('APP_KEY'),
+  debug: Config.get('APP_DEBUG', true),
+  timezone: Config.get('APP_TIMEZONE', 'Asia/Dhaka'),
+  port: Config.get('APP_PORT', 4200),
 };
 
 export default app;
