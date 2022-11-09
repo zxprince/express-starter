@@ -1,6 +1,4 @@
 import express, { Express, Request, Response } from 'express';
-
-
 import Log from './src/classes/log';
 import apiRoutes from './src/routes/api';
 import configApp from './src/config/app';

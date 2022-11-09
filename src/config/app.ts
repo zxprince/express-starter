@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import Config from '../config';
+import Config from '../classes/config';
 
 dotenv.config();
 
@@ -9,7 +9,7 @@ const app = {
   key: Config.get('APP_KEY'),
   debug: Config.get('APP_DEBUG', true),
   timezone: Config.get('APP_TIMEZONE', 'Asia/Dhaka'),
-  port: Config.get('APP_PORT', 4200),
+  port: Config.get('APP_PORT', 4200)
 };
 
 export default app;

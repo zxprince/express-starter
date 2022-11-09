@@ -1,4 +1,4 @@
-import Config from '../config';
+import Config from './config';
 import moment from 'moment';
 
 export default class Log {

@@ -1,7 +1,6 @@
-import dotenv from 'dotenv'; //hasOwnProperty
+import dotenv from 'dotenv';
 
 dotenv.config();
-// export default config;
 
 export default class Config {
   static get(key: string, defaultValue: any = null): any {
