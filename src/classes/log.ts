@@ -7,6 +7,10 @@ export default class Log {
   static info(message: string): void {
     this.log(message, 'info');
   }
+  
+  static error(message: string): void {
+    this.log(message, 'error');
+  }
 
   static log(message: string, type: string = 'info') {
     const content = this.formatMessage(message, type);
