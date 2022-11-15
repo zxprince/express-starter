@@ -4,15 +4,15 @@ import moment from 'moment';
 export default class Log {
   constructor () {}
   
-  static info(message: string): void {
+  static info(message: any): void {
     this.log(message, 'info');
   }
   
-  static error(message: string): void {
+  static error(message: any): void {
     this.log(message, 'error');
   }
 
-  static log(message: string, type: string = 'info') {
+  static log(message: any, type: string = 'info') {
     const content = this.formatMessage(message, type);
     console.log(content);
   }
@@ -21,7 +21,7 @@ export default class Log {
     return moment().format(Config.get('log', 'dateTimeFormat'));
   }
 
-  static formatMessage(message: string, type: string = 'info'): string {
+  static formatMessage(message: any, type: string = 'info'): string {
     const dataTime = this.getDateTime();
     return `[${dataTime}] ${type.toUpperCase()}: ${message}`;
   }
