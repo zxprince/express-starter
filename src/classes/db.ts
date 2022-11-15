@@ -4,15 +4,16 @@ import Log from './log';
 import configDB from '../config/db';
 
 export default class DB {
-  protected connection: Connection;
+  private _connection: Connection;
+
+  get connection(): Connection {
+      return this._connection;
+  }
 
   constructor () {
-    console.log(configDB);
-    // Log.info(config);
+    this._connection = mysql.createConnection(configDB);
 
-    this.connection = mysql.createConnection(configDB);
-
-    this.connection.connect(err => {
+    this._connection.connect(err => {
       if (err) throw err;
       Log.info('Database Connected');
     });
