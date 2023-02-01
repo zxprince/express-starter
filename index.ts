@@ -12,7 +12,6 @@ const port = configApp.port;
 app.get('/', (req: Request, res: Response) => {
   res.send(name);
   Log.info('Hello world');
-
   const db = new DB();
 });
 
