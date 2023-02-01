@@ -10,24 +10,38 @@ export default class Application {
     this.init();
   }
 
-  private init() {
+  /**
+   * Initial the application
+   */
+  private init(): void {
     this.port = configApp.port;
     this.app = express();
 
-    this.initRouteGroup('/api', apiRoutes);
+    this.addRouteGroup('/api', apiRoutes);
   }
 
+  /**
+   * Bootup the application
+   */
   boot() {
     this.runAppServer();
   }
 
+  /**
+   * Run the application server
+   */
   private runAppServer() {
     this.app.listen(this.port, () => {
       console.log(`⚡️[server]: Server is running at http://localhost:${this.port}`);
     });
   }
 
-  private initRouteGroup(path: string, router: Router) {
+  /**
+   * Add route group
+   * @param path route group path
+   * @param router the router object
+   */
+  private addRouteGroup(path: string, router: Router) {
     this.app.use(path, router);
   }
 }
