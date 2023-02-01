@@ -1,10 +1,19 @@
-import express, { Express, Router } from 'express';
+import express, { Express } from 'express';
 import configApp from '../config/app';
 import apiRoutes from '../routes/api';
+import apiMiddleware from '../middlewares/api-middlewares';
 
 export default class Application {
   private app!: Express;
   private port!: number;
+
+  private groups = [
+    {
+      path: '/api',
+      router: apiRoutes,
+      middlewares: [apiMiddleware]
+    }
+  ];
 
   constructor () {
     this.init();
@@ -17,7 +26,7 @@ export default class Application {
     this.port = configApp.port;
     this.app = express();
 
-    this.addRouteGroup('/api', apiRoutes);
+    this.initRouteGroups();
   }
 
   /**
@@ -41,7 +50,15 @@ export default class Application {
    * @param path route group path
    * @param router the router object
    */
-  private addRouteGroup(path: string, router: Router) {
-    this.app.use(path, router);
+  private initRouteGroups() {
+
+    this.groups.forEach(group => {
+      const middlewares = group.middlewares;
+      middlewares.forEach(middleware => {
+        this.app.use(middleware);
+      });
+
+      this.app.use(group.path, group.router);
+    });
   }
 }
