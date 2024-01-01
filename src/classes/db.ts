@@ -1,21 +1,30 @@
-import mysql, { Connection } from 'mysql';
+import mysql, { Connection, Pool } from 'mysql2';
 
 import Log from './log';
+import { QueryBuilder } from './query-builder';
 import configDB from '../config/db';
 
 export default class DB {
-  private _connection: Connection;
+  private connection: Pool;
 
-  get connection(): Connection {
-      return this._connection;
+  constructor() {
+    this.connection = mysql.createPool(configDB);
+
+    this.connection.getConnection((err, conn) => {
+      if (err) {
+        Log.error(`Error connecting to database: ${err}`);
+      } else {
+        Log.info('Database Connected');
+        conn.release();
+      }
+    });
   }
 
-  constructor () {
-    this._connection = mysql.createConnection(configDB);
+  table(table: string): QueryBuilder {
+    return new QueryBuilder({ table, connection: this.connection });
+  }
 
-    this._connection.connect(err => {
-      if (err) throw err;
-      Log.info('Database Connected');
-    });
+  async close(): Promise<void> {
+    await this.connection.promise().end();
   }
 }
