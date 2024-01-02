@@ -18,32 +18,26 @@ export class Schema {
       },
       bigInteger: (column: string) => {
         Log.info(`Adding bigInteger column: ${column}`);
-        // Execute SQL query to add a bigInteger column
         db.connection.promise().query(`ALTER TABLE ${tableName} ADD COLUMN ${column} BIGINT`);
       },
       boolean: (column: string) => {
         Log.info(`Adding boolean column: ${column}`);
-        // Execute SQL query to add a boolean column
         db.connection.promise().query(`ALTER TABLE ${tableName} ADD COLUMN ${column} BOOLEAN`);
       },
       dateTime: (column: string) => {
         Log.info(`Adding dateTime column: ${column}`);
-        // Execute SQL query to add a dateTime column
         db.connection.promise().query(`ALTER TABLE ${tableName} ADD COLUMN ${column} DATETIME`);
       },
       date: (column: string) => {
         Log.info(`Adding date column: ${column}`);
-        // Execute SQL query to add a date column
         db.connection.promise().query(`ALTER TABLE ${tableName} ADD COLUMN ${column} DATE`);
       },
       decimal: (column: string, precision: number = 10, scale: number = 2) => {
         Log.info(`Adding decimal column: ${column}`);
-        // Execute SQL query to add a decimal column
         db.connection.promise().query(`ALTER TABLE ${tableName} ADD COLUMN ${column} DECIMAL(${precision}, ${scale})`);
       },
       json: (column: string) => {
         Log.info(`Adding json column: ${column}`);
-        // Execute SQL query to add a json column
         db.connection.promise().query(`ALTER TABLE ${tableName} ADD COLUMN ${column} JSON`);
       },
       timestamps: () => {
