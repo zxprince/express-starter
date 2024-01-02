@@ -1,4 +1,4 @@
-import { QueryBuilderOptions } from "../interfaces/query-builder-options";
+import { QueryBuilderOptions } from "../../interfaces/query-builder-options";
 import mysql from 'mysql2';
 
 export class QueryBuilder {

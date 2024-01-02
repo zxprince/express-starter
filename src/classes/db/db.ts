@@ -1,8 +1,8 @@
 import mysql, { Connection, Pool } from 'mysql2';
 
-import Log from './log';
+import Log from '../log';
 import { QueryBuilder } from './query-builder';
-import configDB from '../config/db';
+import configDB from '../../config/db';
 
 export default class DB {
   private _connection: Pool;
